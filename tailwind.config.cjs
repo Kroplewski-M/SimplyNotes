@@ -2,7 +2,15 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#EBCB8B",
+        secondary: "#333333",
+      },
+    },
+    fontFamily: {
+      main: ["Itim", "cursive"],
+    },
   },
   plugins: [],
 };
