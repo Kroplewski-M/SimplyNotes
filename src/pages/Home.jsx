@@ -8,7 +8,7 @@ const Home =()=>{
     return(
         <>
         <p className="text-gray-600 font-semibold text-center">The online notebook made for you</p>
-        <div className="w-[350px] md:w-[800px] md:mx-auto fixed bottom-10 -right-10 md:relative  md:flex md:space-x-5 md:mt-[100px]">
+        <div className="w-[350px] md:w-[800px] md:mx-auto fixed bottom-10 -right-10 md:relative  md:flex md:space-x-5 md:mt-[100px] ">
             <img src="../src/assets/svg/notebook.svg" alt="" className=' w-[100%] md:w-[350px]'/>
             <div className="flex flex-wrap mt-16 hidden md:inline-flex ">
                 <p className="font-main text-semibold text-[18px] -mb-10">A way to organise all your notes in one place!</p>
@@ -19,7 +19,7 @@ const Home =()=>{
             </div>
         </div>
         <div className='md:mt-[70px] mt-[30px] md:w-[150px] w-[200px] mx-auto'>
-            <button className='w-[100%] h-[35px] md:h-[50px] rounded-md bg-[#C1A37B] hover:bg-[#A9A28A] font-semibold'>Get Started</button>
+            <button className='w-[100%] h-[35px] md:h-[50px] rounded-md bg-lightBrown hover:bg-[#A9A28A] font-semibold'>Get Started</button>
         </div>
        </>
     )
