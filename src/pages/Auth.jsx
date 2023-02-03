@@ -5,7 +5,7 @@ const Auth = () =>{
     const [register,setRegister] = useState(true);
 
     return(
-            <div className="w-[300px] md:w-[500px] rounded-md bg-lightBrown mx-auto mt-5">
+            <div className="w-[300px] md:w-[500px] rounded-md bg-primary mx-auto mt-5">
                 {register ?
                 (
                 <div>
