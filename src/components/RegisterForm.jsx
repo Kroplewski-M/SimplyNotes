@@ -1,10 +1,26 @@
+//Validate form
+//set input to vars
+//link supabase
+//register users
+
+import { useState } from "react";
 
 
 const RegisterForm = ()=>{
+    const [userInfo, setUserInfo] = useState([]);
+    
+    const [FullName, setFullName] = useState('');
+    const [Email, setEmail] = useState('');
+    const [Password, setPassword] = useState('');
+    const [usage, setUsage] = useState('');
 
+    const registerUser = (event) =>{
+        event.preventDefault();
+        console.log('register');
+    }
     return(
         <div>
-            <form action="" className="mt-5 w-[300px] md:w-[500px] grid place-content-center items-center">
+            <form onSubmit={registerUser} className="mt-5 w-[300px] md:w-[500px] grid place-content-center items-center">
                         <label htmlFor="name" className="font-semibold mr-[5px]">Full Name:</label>
                         <input type="text" name="name" id="name" placeholder="John Doe" className="w-[200px] md:w-[250px] md:h-[30px] rounded-md bg-gray-200 pl-[5px] mb-[10px]"/>
 
