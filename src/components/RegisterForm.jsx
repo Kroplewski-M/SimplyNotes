@@ -1,10 +1,8 @@
-//Validate form
-//set input to vars
-//link supabase
-//register users
+//disable register button when clicked
+//add prompts
 
 import { useState } from "react";
-
+import { supabase} from '../supabaseClient';
 
 const RegisterForm = ()=>{
     const [NameError, setNameError] = useState(false);
@@ -17,11 +15,21 @@ const RegisterForm = ()=>{
     const [Password, setPassword] = useState('');
     const [Usage, setUsage] = useState('Hobby notes');
 
-    function registerUser(){
+    async function registerUser(){
         console.log(FullName);
         console.log(Email);
         console.log(Password);
         console.log(Usage);
+        try{
+            const { data, error } = await supabase.auth.signUp({
+                email: Email,
+                password: Password,
+              })
+            if(error) throw error;
+            else console.log('registered');
+        }catch(error){
+
+        }
     }
     const AuthForm = (event)=>{
         event.preventDefault();
@@ -42,10 +50,7 @@ const RegisterForm = ()=>{
             setPasswordError(false);
         }
         if(FullName.length > 0 && Password.length > 0 && Email.length > 0){
-            console.log(FullName);
-            console.log(Email);
-            console.log(Password);
-            console.log(Usage);
+            registerUser();
         }
     }
     return(
