@@ -7,31 +7,64 @@ import { useState } from "react";
 
 
 const RegisterForm = ()=>{
-    const [userInfo, setUserInfo] = useState([]);
+    const [NameError, setNameError] = useState(false);
+    const [EmailError, setEmailError] = useState(false);
+    const [PasswordError, setPasswordError] = useState(false);
+
     
     const [FullName, setFullName] = useState('');
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
-    const [usage, setUsage] = useState('');
+    const [Usage, setUsage] = useState('Hobby notes');
 
-    const registerUser = (event) =>{
+    function registerUser(){
+        console.log(FullName);
+        console.log(Email);
+        console.log(Password);
+        console.log(Usage);
+    }
+    const AuthForm = (event)=>{
         event.preventDefault();
-        console.log('register');
+        
+        if(FullName.length == 0){
+            setNameError(true);
+        }else{
+            setNameError(false);
+        }
+        if(Email.length == 0 || !Email.includes('@')){
+            setEmailError(true);
+        }else{
+            setEmailError(false);
+        }
+        if(Password.length == 0){
+            setPasswordError(true);
+        }else{
+            setPasswordError(false);
+        }
+        if(FullName.length > 0 && Password.length > 0 && Email.length > 0){
+            console.log(FullName);
+            console.log(Email);
+            console.log(Password);
+            console.log(Usage);
+        }
     }
     return(
         <div>
-            <form onSubmit={registerUser} className="mt-5 w-[300px] md:w-[500px] grid place-content-center items-center">
+            <form onSubmit={AuthForm} className="mt-5 w-[300px] md:w-[500px] grid place-content-center items-center">
                         <label htmlFor="name" className="font-semibold mr-[5px]">Full Name:</label>
-                        <input type="text" name="name" id="name" placeholder="John Doe" className="w-[200px] md:w-[250px] md:h-[30px] rounded-md bg-gray-200 pl-[5px] mb-[10px]"/>
+                        <input type="text" name="name" id="name" placeholder="John Doe" onChange={(event)=> setFullName(event.target.value)}
+                        className={"w-[200px] md:w-[250px] md:h-[30px] rounded-md bg-gray-200 pl-[5px] mb-[10px]" + (NameError? 'border-solid border-2 border-red-700': '')}/>
 
                         <label htmlFor="email" className="font-semibold mr-[5px]">Email:</label>
-                        <input type="email" name="email" id="email" placeholder="JohnDoe@mail.com" className="w-[200px] md:w-[250px] md:h-[30px] rounded-md bg-gray-200 pl-[5px] mb-[10px]"/>
+                        <input type="email" name="email" id="email" placeholder="JohnDoe@mail.com" onChange={(event)=> setEmail(event.target.value)}
+                        className={"w-[200px] md:w-[250px] md:h-[30px] rounded-md bg-gray-200 pl-[5px] mb-[10px]"+ (EmailError? 'border-solid border-2 border-red-700': '')}/>
 
                         <label htmlFor="password" className="font-semibold mr-[5px]">Password:</label>
-                        <input type="password" name="password" id="password" className="w-[200px] md:w-[250px] md:h-[30px] rounded-md bg-gray-200 pl-[5px] mb-[10px]"/>
+                        <input type="password" name="password" id="password" onChange={(event)=> setPassword(event.target.value)}
+                        className={"w-[200px] md:w-[250px] md:h-[30px] rounded-md bg-gray-200 pl-[5px] mb-[10px]"+ (PasswordError? 'border-solid border-2 border-red-700': '')}/>
                         
                         <label htmlFor="use" className="w-[200px] font-semibold text-center">What are you going to use this app for?</label>
-                        <select name="use" id="usage" className="mt-5 bg-gray-200 rounded-md font-semibold mb-10">
+                        <select name="use" id="usage" className="mt-5 bg-gray-200 rounded-md font-semibold mb-10" onChange={(event)=>setUsage(event.target.value)}>
                             <option value="Hobby notes">Hobby notes</option>
                             <option value="University notes">University notes</option>
                             <option value="Work notes">Work notes</option>
