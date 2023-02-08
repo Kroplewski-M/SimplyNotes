@@ -5,6 +5,10 @@ import { useState } from "react";
 import { supabase} from '../supabaseClient';
 
 const RegisterForm = ()=>{
+    const [disableBtn,setDisableBtn] = useState(false);
+    const [promtState, setPromtState] = useState('');
+    const [promtBg,setPromtBg] = useState('bg-green-500');
+
     const [NameError, setNameError] = useState(false);
     const [EmailError, setEmailError] = useState(false);
     const [PasswordError, setPasswordError] = useState(false);
@@ -16,19 +20,24 @@ const RegisterForm = ()=>{
     const [Usage, setUsage] = useState('Hobby notes');
 
     async function registerUser(){
-        console.log(FullName);
-        console.log(Email);
-        console.log(Password);
-        console.log(Usage);
+        setDisableBtn(true);
+        setPromtState('Creating Account');
         try{
             const { data, error } = await supabase.auth.signUp({
                 email: Email,
                 password: Password,
               })
             if(error) throw error;
-            else console.log('registered');
+            else {
+                setPromtState('Account Created');
+                setPromtBg('bg-green-600');
+            }
         }catch(error){
-
+            console.log(error);
+            setPromtState('Error Occured');
+            setPromtBg('bg-red-500');
+        }finally{
+            setDisableBtn(false);
         }
     }
     const AuthForm = (event)=>{
@@ -55,6 +64,15 @@ const RegisterForm = ()=>{
     }
     return(
         <div>
+            {
+                promtState != ''?(
+                <div className={`w-[300px] h-[40px] ${promtBg} absolute -top-[45px] rounded-md md:ml-[110px]`}>
+                    <p className="font-bold text-center mt-[7px]">{promtState}</p>
+                </div>
+                ):(
+                <div></div>
+                )
+            }
             <form onSubmit={AuthForm} className="mt-5 w-[300px] md:w-[500px] grid place-content-center items-center">
                         <label htmlFor="name" className="font-semibold mr-[5px]">Full Name:</label>
                         <input type="text" name="name" id="name" placeholder="John Doe" onChange={(event)=> setFullName(event.target.value)}
@@ -74,7 +92,8 @@ const RegisterForm = ()=>{
                             <option value="University notes">University notes</option>
                             <option value="Work notes">Work notes</option>
                         </select>
-                        <button className="w-[100%] h-[35px] md:h-[50px] rounded-md bg-[#333333] text-gray-200 hover:bg-gray-300 hover:text-[#333333] font-semibold">Register</button>
+                        <button disabled={disableBtn}
+                        className="w-[100%] h-[35px] md:h-[50px] rounded-md bg-[#333333] text-gray-200 hover:bg-gray-300 hover:text-[#333333] font-semibold">Register</button>
                         <p className="text-center font-bold mt-5">Or</p>
                     </form>
         </div>

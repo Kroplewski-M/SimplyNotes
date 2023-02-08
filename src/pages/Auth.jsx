@@ -6,7 +6,7 @@ import LoginForm from '../components/LoginForm';
 const Auth = () =>{
     const [register,setRegister] = useState(true);
     return(
-            <div className="w-[300px] md:w-[500px] rounded-md bg-primary mx-auto mt-5">
+            <div className="w-[300px] md:w-[500px] rounded-md bg-primary mx-auto mt-16 relative">
                 {register ?
                 (
                 <div>
