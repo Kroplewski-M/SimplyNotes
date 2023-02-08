@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { supabase} from '../supabaseClient';
 
 
 const LoginForm = ()=>{
@@ -12,10 +13,29 @@ const LoginForm = ()=>{
     const [promtState, setPromtState] = useState('');
     const [promtBg,setPromtBg] = useState('bg-green-500');
 
-    function logInUser(){
-        console.log('loggin in ');
+    async function logInUser(){
+        setDisableBtn(true);
+        setPromtState('Logging in');
+        try{
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: Email,
+                password: Password,
+              })
+              if(error) throw error;
+              else{
+                console.log('logged in');
+                setPromtState('Success!');
+                setPromtBg('bg-green-600');
+              }
+        }catch(error){
+            console.log('error');
+            setPromtBg('bg-red-700');
+            setPromtState('Account not Found');
+        }finally{
+            setDisableBtn(false);
+        }
     }
-    
+
     const AuthForm = (event)=>{
         event.preventDefault();
         if(Email == ''){
@@ -34,6 +54,15 @@ const LoginForm = ()=>{
     }
 return(
     <div>
+        {
+            promtState != ''?(
+            <div className={`w-[300px] h-[40px] ${promtBg} absolute -top-[45px] rounded-md md:ml-[110px]`}>
+                <p className="font-bold text-center mt-[7px]">{promtState}</p>
+            </div>
+            ):(
+            <div></div>
+            )
+            }
         <form onSubmit={AuthForm} className="mt-5 w-[300px] md:w-[500px]  grid place-content-center items-center">
             <label htmlFor="email" className="font-semibold mr-[5px]">Email:</label>
             <input type="email" name="email" id="email" placeholder="JohnDoe@mail.com" onChange={(event)=> setEmail(event.target.value)}
@@ -43,7 +72,8 @@ return(
             <input type="password" name="password" id="password" onChange={(event)=> setPassword(event.target.value)}
             className={"w-[200px] rounded-md bg-gray-200 pl-[5px] mb-[10px] md:w-[250px] md:h-[30px]"+ (PasswordError? 'border-solid border-2 border-red-700': '')}/>
 
-            <button className=" mt-10 w-[100%] h-[35px] md:h-[50px] rounded-md bg-[#333333] text-gray-200 hover:bg-gray-300 hover:text-[#333333] font-semibold">
+            <button disabled={disableBtn}
+            className=" mt-10 w-[100%] h-[35px] md:h-[50px] rounded-md bg-[#333333] text-gray-200 hover:bg-gray-300 hover:text-[#333333] font-semibold">
             Login</button>
             <p className="text-center font-bold mt-5">Or</p>
         </form>
