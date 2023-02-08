@@ -1,6 +1,3 @@
-//disable register button when clicked
-//add prompts
-
 import { useState } from "react";
 import { supabase} from '../supabaseClient';
 
