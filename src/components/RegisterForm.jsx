@@ -26,6 +26,23 @@ const RegisterForm = ()=>{
               })
             if(error) throw error;
             else {
+                addUserToTable(data.user.id);
+            }
+        }catch(error){
+            console.log(error);
+            setPromtState('Error Occured');
+            setPromtBg('bg-red-500');
+        }finally{
+            setDisableBtn(false);
+        }
+    }
+    async function addUserToTable(ID){
+        try{
+            const { data,error } = await supabase
+            .from('profiles')
+            .insert({ id: ID, fullName: FullName, email:Email, usage:Usage});
+            if(error) throw error;
+            else{
                 setPromtState('Account Created');
                 setPromtBg('bg-green-600');
             }
