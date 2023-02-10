@@ -5,6 +5,7 @@ import LoginForm from '../components/LoginForm';
 
 const Auth = () =>{
     const [register,setRegister] = useState(false);
+
     return(
             <div className="w-[300px] md:w-[500px] rounded-md bg-primary mx-auto mt-16 relative">
                 {register ?
@@ -28,9 +29,7 @@ const Auth = () =>{
                         </div>
                     </div>
                 )
-                
-                }
-                
+            }
             </div>
     )
 

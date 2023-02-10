@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { supabase} from '../supabaseClient';
+import { UserContext } from "../userContext";
 
 
 const LoginForm = ()=>{
+    const {user,setUser} = useContext(UserContext);
+
     const [Email,setEmail] = useState('');
     const [Password,setPassword] = useState('');
 
@@ -23,9 +26,10 @@ const LoginForm = ()=>{
               })
               if(error) throw error;
               else{
-                console.log('logged in');
-                setPromtState('Success!');
-                setPromtBg('bg-green-600');
+                  setPromtState('Success!');
+                  setPromtBg('bg-green-600');
+                  setUser(data.user);
+                  console.log(user);
               }
         }catch(error){
             console.log('error');
