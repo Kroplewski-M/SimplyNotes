@@ -26,20 +26,35 @@ const LoginForm = ()=>{
               })
               if(error) throw error;
               else{
-                  setPromtState('Success!');
-                  setPromtBg('bg-green-600');
                   setUser(data.user);
-                  console.log(user);
+                  fetchUserInfo();
               }
         }catch(error){
             console.log('error');
+            setPromtBg('bg-red-700');
+            setPromtState('Account not Found');
+        }
+    }
+    async function fetchUserInfo(){
+        try{
+            const { data, error } = await supabase
+            .from('profiles')
+            .select().eq('id',user.id);
+            if(error) throw error;
+            else{
+                setPromtState('Success!');
+                setPromtBg('bg-green-600');
+                console.log('user found:');
+                setUser(data[0]);
+            }
+        }catch(error){
+            console.log(error);
             setPromtBg('bg-red-700');
             setPromtState('Account not Found');
         }finally{
             setDisableBtn(false);
         }
     }
-
     const AuthForm = (event)=>{
         event.preventDefault();
         if(Email == ''){
@@ -87,3 +102,5 @@ return(
 }
 
 export default LoginForm;
+
+//ERROR -- LOGS USER IN SECOND TIME
