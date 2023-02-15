@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 const Home =()=>{
     let folders = [];
@@ -13,13 +13,13 @@ const Home =()=>{
             <div className="flex flex-wrap mt-16 hidden md:inline-flex ">
                 <p className="font-main text-semibold text-[18px] -mb-10">A way to organise all your notes in one place!</p>
                 {folders.map((folder,key)=>{
-                    return <img src="../src/assets/svg/folder.svg" alt="" className=' w-[100px] mr-[5px]'/>
+                    return <img src="../src/assets/svg/folder.svg" alt="" key={folder} className=' w-[100px] mr-[5px]'/>
                 })}
                 
             </div>
         </div>
         <div className='md:mt-[70px] mt-[30px] md:w-[150px] w-[200px] mx-auto'>
-            <button className='w-[100%] h-[35px] md:h-[50px] rounded-md bg-primary hover:bg-primary/70 font-semibold text-gray-200'>Get Started</button>
+            <Link to='/auth'><button className='w-[100%] h-[35px] md:h-[50px] rounded-md bg-primary hover:bg-primary/70 font-semibold text-gray-200'>Get Started</button></Link>
         </div>
        </>
     )

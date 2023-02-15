@@ -2,13 +2,16 @@ import './App.css';
 import Nav from './components/Nav';
 import Home from './pages/Home';
 import Auth from './pages/Auth';
+import Projects from './pages/projects';
 import { UserContext } from './userContext';
 import { useState, useEffect } from 'react';
 import { supabase} from './supabaseClient';
+import { BrowserRouter as Router, Route, Routes, useNavigate  } from 'react-router-dom';
 
 function App() {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
-  
+
   async function fetchUserInfo(ID){
     try{
         const { data, error } = await supabase
@@ -19,6 +22,8 @@ function App() {
             console.log('user found:');
             setUser(data[0]);
             console.log(data[0]);
+            console.log('Redirecting...');
+            navigate('/projects');
         }
     }catch(error){
         console.log(error);
@@ -37,26 +42,22 @@ useEffect(()=>{
   }
   },[])
 
-  // useEffect(()=>{
-  //   console.log('useEffect log:');
-  //   console.log(user);
-  // },[user])
+
 
   return (
     <div className="App">
-      <UserContext.Provider value={{user,setUser}}>
-      <Nav />
-      <Home />
-      {/* <Auth /> */}
-      </UserContext.Provider>
+        <UserContext.Provider value={{user,setUser}}>
+          <Nav />
+          <Routes>
+            <Route path='/' element={<Home />}/>
+            <Route path='/auth' element={<Auth />}/>
+            <Route path='/projects' element={<Projects />}/>
+
+          </Routes>
+        </UserContext.Provider>
     </div>
   )
 }
 
 export default App
 
-
-//TO DO
-//FETCH LOGGED IN USER WHEN RELOAD
-//FETCH USER INFO FROM TABLE AND SET TO GLOBAL VAR
-//SET GLOBAL VAR WITH USER INFO WHEN REGISTERED
