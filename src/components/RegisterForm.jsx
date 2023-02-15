@@ -8,7 +8,7 @@ const RegisterForm = ()=>{
     const {user,setUser} = useContext(UserContext);
     const navigate = useNavigate();
 
-
+    const [avatarNum, setAvatarNum] = useState(1);
     const [disableBtn,setDisableBtn] = useState(false);
     const [promtState, setPromtState] = useState('');
     const [promtBg,setPromtBg] = useState('bg-green-500');
@@ -47,7 +47,7 @@ const RegisterForm = ()=>{
         try{
             const { data,error } = await supabase
             .from('profiles')
-            .insert({ id: ID, fullName: FullName, email:Email, usage:Usage});
+            .insert({ id: ID, fullName: FullName, email:Email, usage:Usage, AvatarNum: avatarNum});
             if(error) throw error;
             else{
                 setPromtState('Account Created...Redirecting!');
@@ -98,6 +98,27 @@ const RegisterForm = ()=>{
                 <div></div>
                 )
             }
+            <div>
+                <p className="text-[20px] font-semibold text-center mb-[15px]">Choose an avatar:</p>
+                <ul className="flex space-x-5 place-content-center">
+                    <li onClick={()=> setAvatarNum(1)}>
+                        <img src="../src/assets/avatars/defaultAvatar1.png" alt="" 
+                        className="w-[60px] h-[60px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-300 rounded-full" />
+                    </li>
+                    <li onClick={()=> setAvatarNum(2)}>
+                        <img src="../src/assets/avatars/defaultAvatar2.png" alt="" 
+                        className="w-[60px] h-[60px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-300 rounded-full" />
+                    </li>
+                    <li onClick={()=> setAvatarNum(3)}>
+                        <img src="../src/assets/avatars/defaultAvatar3.png" alt="" 
+                        className="w-[60px] h-[60px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-300 rounded-full" />
+                    </li>
+                    <li onClick={()=> setAvatarNum(4)}>
+                        <img src="../src/assets/avatars/defaultAvatar4.png" alt="" 
+                        className="w-[60px] h-[60px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-300 rounded-full" />
+                    </li>
+                </ul>
+            </div>
             <form onSubmit={AuthForm} className="mt-5 w-[300px] md:w-[500px] grid place-content-center items-center">
                         <label htmlFor="name" className="font-semibold mr-[5px]">Full Name:</label>
                         <input type="text" name="name" id="name" placeholder="John Doe" onChange={(event)=> setFullName(event.target.value)}
