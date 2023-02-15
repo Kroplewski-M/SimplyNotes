@@ -6,7 +6,7 @@ import Projects from './pages/projects';
 import { UserContext } from './userContext';
 import { useState, useEffect } from 'react';
 import { supabase} from './supabaseClient';
-import { BrowserRouter as Router, Route, Routes, useNavigate  } from 'react-router-dom';
+import { Route, Routes, useNavigate  } from 'react-router-dom';
 
 function App() {
   const navigate = useNavigate();
@@ -21,7 +21,6 @@ function App() {
         else{
             console.log('user found:');
             setUser(data[0]);
-            console.log(data[0]);
             console.log('Redirecting...');
             navigate('/projects');
         }
@@ -52,7 +51,6 @@ useEffect(()=>{
             <Route path='/' element={<Home />}/>
             <Route path='/auth' element={<Auth />}/>
             <Route path='/projects' element={<Projects />}/>
-
           </Routes>
         </UserContext.Provider>
     </div>
