@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { supabase} from '../supabaseClient';
+import { UserContext } from "../userContext";
+import { useNavigate  } from 'react-router-dom';
+
 
 const RegisterForm = ()=>{
+    const {user,setUser} = useContext(UserContext);
+    const navigate = useNavigate();
+
+
     const [disableBtn,setDisableBtn] = useState(false);
     const [promtState, setPromtState] = useState('');
     const [promtBg,setPromtBg] = useState('bg-green-500');
@@ -43,8 +50,12 @@ const RegisterForm = ()=>{
             .insert({ id: ID, fullName: FullName, email:Email, usage:Usage});
             if(error) throw error;
             else{
-                setPromtState('Account Created');
+                setPromtState('Account Created...Redirecting!');
                 setPromtBg('bg-green-600');
+                setUser(data);
+                setTimeout(function() {
+                    navigate('/projects');
+                }, 1000);
             }
         }catch(error){
             console.log(error);
