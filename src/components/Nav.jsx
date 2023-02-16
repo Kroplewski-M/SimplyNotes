@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { UserContext } from '../userContext';
 import { useContext, useState,useEffect } from "react";
 import { useNavigate  } from 'react-router-dom';
@@ -9,15 +8,13 @@ const Nav = ()=>{
 
     const [windowSize, setWindowSize] = useState(getWindowSize());
     const [showPrompt, setShowPrompt] = useState(false);
-    const [MobileMenu, setMobileMenu] = useState(true);
+    const [MobileMenu, setMobileMenu] = useState(false);
 
     useEffect(() => {
       function handleWindowResize() {
         setWindowSize(getWindowSize());
       }
-  
       window.addEventListener('resize', handleWindowResize);
-  
       return () => {
         window.removeEventListener('resize', handleWindowResize);
       };
@@ -26,6 +23,16 @@ const Nav = ()=>{
         const {innerWidth, innerHeight} = window;
         return {innerWidth, innerHeight};
       }
+      useEffect(() =>{
+          if(windowSize.innerWidth >= 768 && MobileMenu){
+            setMobileMenu(false);
+          }
+          if(windowSize.innerWidth < 768 && showPrompt){
+            setShowPrompt(false);
+          }
+
+      },[windowSize.innerWidth]);
+
     const {user,setUser} = useContext(UserContext);
   
     const defaultAvatar1 = new URL('../assets/avatars/defaultAvatar1.png', import.meta.url).href;

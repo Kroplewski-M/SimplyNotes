@@ -30,7 +30,7 @@ const LoginForm = ()=>{
               if(error) throw error;
               else{
                   setUser(data.user);
-                  fetchUserInfo(user);
+                  fetchUserInfo(data.user);
               }
         }catch(error){
             console.log('error');
