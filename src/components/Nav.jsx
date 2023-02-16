@@ -1,11 +1,29 @@
 import { Link } from "react-router-dom";
 import { UserContext } from '../userContext';
-import { useContext } from "react";
+import { useContext, useState,useEffect } from "react";
 
 
 const Nav = ()=>{
-    const {user,setUser} = useContext(UserContext);
 
+    const [windowSize, setWindowSize] = useState(getWindowSize());
+
+    useEffect(() => {
+      function handleWindowResize() {
+        setWindowSize(getWindowSize());
+      }
+  
+      window.addEventListener('resize', handleWindowResize);
+  
+      return () => {
+        window.removeEventListener('resize', handleWindowResize);
+      };
+    }, []);
+    function getWindowSize() {
+        const {innerWidth, innerHeight} = window;
+        return {innerWidth, innerHeight};
+      }
+    const {user,setUser} = useContext(UserContext);
+  
     const defaultAvatar1 = new URL('../assets/avatars/defaultAvatar1.png', import.meta.url).href;
     const defaultAvatar2 = new URL('../assets/avatars/defaultAvatar2.png', import.meta.url).href;
     const defaultAvatar3 = new URL('../assets/avatars/defaultAvatar3.png', import.meta.url).href;
@@ -29,14 +47,24 @@ const Nav = ()=>{
            <Link to='/'><p className="font-main text-[30px] text-gray-200 pt-[5px]">SimplyNotes</p></Link> 
            {
             user != null ?(
-                <div className="w-[50px] h-[50px]  absolute right-10 top-1 hover:cursor-pointer">
-                    <img src={getAvatar()} alt="" />
-                </div>
+                <>
+                        <div className="w-[50px] h-[50px] absolute right-10 top-1 hover:cursor-pointer">
+                {
+                    windowSize.innerWidth >= 768?(
+                            <img src={getAvatar()} alt="" />
+                    ):(
+                        <img src='../src/assets/mobileMenu.png' alt="" className="w-[40px] absolute -right-5 top-1 hover:cursor-pointer"/>
+                    )
+                }
+                        </div>
+
+                </>
             ):(
                 <div></div>
             )
            }
         </nav>
+        <p>{windowSize.innerWidth}</p>
         </>
     )
 }
