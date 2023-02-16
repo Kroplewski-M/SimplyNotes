@@ -9,6 +9,8 @@ const Nav = ()=>{
 
     const [windowSize, setWindowSize] = useState(getWindowSize());
     const [showPrompt, setShowPrompt] = useState(false);
+    const [MobileMenu, setMobileMenu] = useState(true);
+
     useEffect(() => {
       function handleWindowResize() {
         setWindowSize(getWindowSize());
@@ -43,14 +45,15 @@ const Nav = ()=>{
             return defaultAvatar4;
         }
     }
-    function goHome(){
-        navigate('/');
-        console.log('navigate');
+    function goToProfile(){
+        setShowPrompt(false);
+        setMobileMenu(false);
+        navigate('/profile');
     }
     return(
         <>
         <nav className="w-[100vw] h-[60px] bg-primary text-secondary">
-           <p className="font-main text-[30px] text-gray-200 pt-[5px] w-[100px] mx-auto hover:cursor-pointer" onClick={()=>goHome()}>SimplyNotes</p>
+           <p className="font-main text-[30px] text-gray-200 pt-[5px] w-[150px] mx-auto hover:cursor-pointer" onClick={()=> navigate('/')}>SimplyNotes</p>
            {
             user != null ?(
                 <>
@@ -63,12 +66,15 @@ const Nav = ()=>{
                             </div>
                             </>
                         ):(
-                            <img src='../src/assets/mobileMenu.png' alt=""
-                            className="w-[40px] absolute -right-5 top-1 hover:cursor-pointer z-50"/>
+                            <div onClick={()=> setMobileMenu(()=> !MobileMenu)}>
+                                <img src='../src/assets/mobileMenu.png' alt=""
+                                className="w-[40px] absolute -right-5 top-1 hover:cursor-pointer z-50"/>
+                            </div>
                         )
                     }
                     </div>
                     <div>
+                        {/* Desktop prompt */}
                         {
                             showPrompt?(
                                 <div className="w-[400px] h-[200px] bg-prompts absolute right-10 top-[60px] rounded-md">
@@ -79,7 +85,7 @@ const Nav = ()=>{
                                         <p>Hi,</p>
                                         <p className="font-bold">{user.fullName}</p>
                                     </div>
-                                    <div className="w-[300px] h-[35px] mx-auto mt-10">
+                                    <div className="w-[300px] h-[35px] mx-auto mt-10" onClick={()=> goToProfile()}>
                                         <button className="w-[100%] h-[100%] rounded-md bg-gray-200 font-bold">Account Settings</button>
                                     </div>
 
@@ -88,8 +94,25 @@ const Nav = ()=>{
                                 <div></div>
                             )
                         }
-
-
+                        {/* mobile menu */}
+                        {
+                            MobileMenu && windowSize.innerWidth < 768?(
+                                <div className="absolute w-[100vw] h-[100vh] bg-primary z-50 top-0">
+                                    <div className="mr-[5px] mt-[5px] flex justify-end" onClick={()=> setMobileMenu(()=> !MobileMenu)}>
+                                        <img src="../src/assets/close.png" alt="" className="w-[30px] hover:cursor-pointer"/>
+                                    </div>
+                                    <div className="text-gray-200 text-center text-[20px] mt-16">
+                                        <p>Hi,</p>
+                                        <p className="font-bold">{user.fullName}</p>
+                                    </div>
+                                        <div className="w-[300px] h-[35px] mx-auto mt-10" onClick={()=> goToProfile()}>
+                                            <button className="w-[100%] h-[100%] rounded-md bg-gray-200 font-bold">Account Settings</button>
+                                        </div>
+                                </div>
+                            ):(
+                                <div></div>
+                            )
+                        }
                     </div>
                 </>
             ):(

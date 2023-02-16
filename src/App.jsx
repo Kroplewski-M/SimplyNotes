@@ -3,6 +3,7 @@ import Nav from './components/Nav';
 import Home from './pages/Home';
 import Auth from './pages/Auth';
 import Projects from './pages/projects';
+import Profile from './pages/Profile';
 import { UserContext } from './userContext';
 import { useState, useEffect } from 'react';
 import { supabase} from './supabaseClient';
@@ -51,6 +52,8 @@ useEffect(()=>{
             <Route path='/' element={<Home />}/>
             <Route path='/auth' element={<Auth />}/>
             <Route path='/projects' element={<Projects />}/>
+            <Route path='/profile' element={<Profile />}/>
+
           </Routes>
         </UserContext.Provider>
     </div>
