@@ -77,7 +77,7 @@ const Nav = ()=>{
                         {/* Desktop prompt */}
                         {
                             showPrompt?(
-                                <div className="w-[400px] h-[200px] bg-prompts absolute right-10 top-[60px] rounded-md">
+                                <div className="w-[400px] h-[200px] bg-prompts absolute right-10 top-[60px] rounded-md z-50">
                                     <div className="mr-[5px] mt-[5px] flex justify-end" onClick={()=> setShowPrompt(()=> !showPrompt)}>
                                         <img src="../src/assets/close.png" alt="" className="w-[30px] hover:cursor-pointer"/>
                                     </div>

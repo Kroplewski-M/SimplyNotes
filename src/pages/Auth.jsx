@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../userContext";
+import { useNavigate  } from 'react-router-dom';
+
 import RegisterForm from '../components/RegisterForm';
 import LoginForm from '../components/LoginForm';
 
 
 const Auth = () =>{
     const [register,setRegister] = useState(false);
+    const {user,setUser} = useContext(UserContext);
+    const navigate = useNavigate();
 
+    useEffect(()=>{
+        if(user != null){
+            navigate('/projects');
+        }
+    },[])
+    
     return(
             <div className="w-[300px] md:w-[500px] rounded-md bg-primary mx-auto mt-16 relative">
                 {register ?

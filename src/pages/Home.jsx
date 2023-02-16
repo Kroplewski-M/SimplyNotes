@@ -1,10 +1,23 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import { UserContext } from "../userContext";
+import { useNavigate  } from 'react-router-dom';
 
 const Home =()=>{
     let folders = [];
     for(let i=0; i < 7;i++){
         folders.push(i);
     }
+
+    const {user,setUser} = useContext(UserContext);
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(user != null){
+            navigate('/projects');
+        }
+    },[])
+
     return(
         <>
         <p className="font-semibold text-center pt-5">The online notebook made for you</p>

@@ -43,18 +43,17 @@ useEffect(()=>{
   },[])
 
 
-
   return (
     <div className="App">
         <UserContext.Provider value={{user,setUser}}>
-          <Nav />
-          <Routes>
-            <Route path='/' element={<Home />}/>
-            <Route path='/auth' element={<Auth />}/>
-            <Route path='/projects' element={<Projects />}/>
-            <Route path='/profile' element={<Profile />}/>
+            <Nav />
+              <Routes>
+                  <Route path='/' element={<Home />}/>
+                  <Route path='/auth' element={<Auth />}/>
+                  <Route path='/projects' element={<Projects />}/>
+                  <Route path='/profile' element={<Profile />}/>
 
-          </Routes>
+              </Routes>
         </UserContext.Provider>
     </div>
   )
