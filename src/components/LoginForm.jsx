@@ -30,15 +30,16 @@ const LoginForm = ()=>{
               if(error) throw error;
               else{
                   setUser(data.user);
-                  fetchUserInfo();
+                  fetchUserInfo(user);
               }
         }catch(error){
             console.log('error');
+            console.log(error);
             setPromtBg('bg-red-700');
             setPromtState('Account not Found');
         }
     }
-    async function fetchUserInfo(){
+    async function fetchUserInfo(user){
         try{
             const { data, error } = await supabase
             .from('profiles')
