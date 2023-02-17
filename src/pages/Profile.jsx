@@ -1,7 +1,10 @@
 import { UserContext } from '../userContext';
 import { useContext } from "react";
+import { useNavigate  } from 'react-router-dom';
+import { supabase} from '../supabaseClient';
 
 const Profile = ()=>{
+    const navigate = useNavigate();
     const {user,setUser} = useContext(UserContext);
     const defaultAvatar1 = new URL('../assets/avatars/defaultAvatar1.png', import.meta.url).href;
     const defaultAvatar2 = new URL('../assets/avatars/defaultAvatar2.png', import.meta.url).href;
@@ -19,8 +22,17 @@ const Profile = ()=>{
             return defaultAvatar4;
         }
     }
-    function logOut(){
-        console.log('logOut');
+    async function logOut(){
+        try{
+            const { error } = await supabase.auth.signOut();
+            if(error) throw error;
+            else{
+                setUser(null);
+                navigate('/');
+            }
+        }catch(error){
+            console.log(error);
+        }
     }
     return(
         <>
