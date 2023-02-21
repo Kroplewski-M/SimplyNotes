@@ -66,6 +66,7 @@ const Nav = ()=>{
                 <>
                     <div className="w-[50px] h-[50px] absolute right-10 top-1 hover:cursor-pointer"> 
                     {
+                        // show Avatar
                         windowSize.innerWidth >= 768?(
                             <>
                             <div  onClick={()=> setShowPrompt(()=> !showPrompt)}>
