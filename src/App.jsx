@@ -52,7 +52,6 @@ useEffect(()=>{
                   <Route path='/auth' element={<Auth />}/>
                   <Route path='/projects' element={<Projects />}/>
                   <Route path='/profile' element={<Profile />}/>
-
               </Routes>
         </UserContext.Provider>
     </div>

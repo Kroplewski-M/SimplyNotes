@@ -1,10 +1,15 @@
 import NoteCard from "../components/NoteCard";
 import AddNotePopUp from "../components/AddNotePopUp";
-import { useState } from "react";
+import { useState,} from "react";
+
 
 const Projects = () =>{
     const cards = [1,2,3,4,5,6,7,8,9];
-    const [popUp, setPopUp] = useState(false);
+    const [popUp,setPopUp] = useState(false);
+
+    const closePopUp = ()=>{
+        setPopUp(false);
+    }
     return(
         <>
             <div className="w-[300px] md:w-[850px] mx-auto mt-10">
@@ -35,7 +40,7 @@ const Projects = () =>{
                     }
                     {
                         popUp?(
-                            <AddNotePopUp />
+                                    <AddNotePopUp closePopUp={closePopUp} />
                         ):(
                             <div></div>
                         )
