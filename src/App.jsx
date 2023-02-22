@@ -2,7 +2,7 @@ import './App.css';
 import Nav from './components/Nav';
 import Home from './pages/Home';
 import Auth from './pages/Auth';
-import Projects from './pages/projects';
+import Projects from './pages/Projects';
 import Profile from './pages/Profile';
 import { UserContext } from './userContext';
 import { useState, useEffect } from 'react';
