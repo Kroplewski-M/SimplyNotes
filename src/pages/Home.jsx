@@ -18,15 +18,17 @@ const Home =()=>{
         }
     },[])
 
+    const folderImg = new URL('../assets/svg/folder.svg', import.meta.url).href;
+    const noteBookImg = new URL('../assets/svg/notebook.svg', import.meta.url).href;
     return(
         <>
         <p className="font-semibold text-center pt-5">The online notebook made for you</p>
         <div className="w-[350px] md:w-[800px] md:mx-auto fixed bottom-10 -right-10 md:relative  md:flex md:space-x-5 md:mt-[100px] ">
-            <img src="../src/assets/svg/notebook.svg" alt="" className=' w-[100%] md:w-[350px]'/>
+            <img src={noteBookImg} alt="" className=' w-[100%] md:w-[350px]'/>
             <div className="flex flex-wrap mt-16 hidden md:inline-flex ">
                 <p className="font-main text-semibold text-[18px] -mb-10">A way to organise all your notes in one place!</p>
                 {folders.map((folder,key)=>{
-                    return <img src="../src/assets/svg/folder.svg" alt="" key={folder} className=' w-[100px] mr-[5px]'/>
+                    return <img src={folderImg} alt="" key={folder} className=' w-[100px] mr-[5px]'/>
                 })}
                 
             </div>

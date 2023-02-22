@@ -87,6 +87,10 @@ const RegisterForm = ()=>{
             registerUser();
         }
     }
+    const defaultAvatar1 = new URL('../assets/avatars/defaultAvatar1.png', import.meta.url).href;
+    const defaultAvatar2 = new URL('../assets/avatars/defaultAvatar2.png', import.meta.url).href;
+    const defaultAvatar3 = new URL('../assets/avatars/defaultAvatar3.png', import.meta.url).href;
+    const defaultAvatar4 = new URL('../assets/avatars/defaultAvatar4.png', import.meta.url).href;
     return(
         <div>
             {
@@ -102,19 +106,19 @@ const RegisterForm = ()=>{
                 <p className="text-[20px] font-semibold text-center mb-[15px]">Choose an avatar:</p>
                 <ul className="flex space-x-5 place-content-center">
                     <li onClick={()=> setAvatarNum(1)}>
-                        <img src="../src/assets/avatars/defaultAvatar1.png" alt="" 
+                        <img src={defaultAvatar1} alt="" 
                         className="w-[60px] h-[60px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-300 rounded-full" />
                     </li>
                     <li onClick={()=> setAvatarNum(2)}>
-                        <img src="../src/assets/avatars/defaultAvatar2.png" alt="" 
+                        <img src={defaultAvatar2} alt="" 
                         className="w-[60px] h-[60px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-300 rounded-full" />
                     </li>
                     <li onClick={()=> setAvatarNum(3)}>
-                        <img src="../src/assets/avatars/defaultAvatar3.png" alt="" 
+                        <img src={defaultAvatar3} alt="" 
                         className="w-[60px] h-[60px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-300 rounded-full" />
                     </li>
                     <li onClick={()=> setAvatarNum(4)}>
-                        <img src="../src/assets/avatars/defaultAvatar4.png" alt="" 
+                        <img src={defaultAvatar4} alt="" 
                         className="w-[60px] h-[60px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-300 rounded-full" />
                     </li>
                 </ul>

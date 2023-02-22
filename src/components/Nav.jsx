@@ -40,6 +40,9 @@ const Nav = ()=>{
     const defaultAvatar3 = new URL('../assets/avatars/defaultAvatar3.png', import.meta.url).href;
     const defaultAvatar4 = new URL('../assets/avatars/defaultAvatar4.png', import.meta.url).href;
 
+    const mobileMenuImg = new URL('../assets/mobileMenu.png', import.meta.url).href;
+    const closeImg = new URL('../assets/close.png', import.meta.url).href;
+
     function getAvatar(){
         if(user.AvatarNum == 1){
             return defaultAvatar1;
@@ -75,7 +78,7 @@ const Nav = ()=>{
                             </>
                         ):(
                             <div onClick={()=> setMobileMenu(()=> !MobileMenu)}>
-                                <img src='../src/assets/mobileMenu.png' alt=""
+                                <img src={mobileMenuImg} alt=""
                                 className="w-[40px] absolute -right-5 top-1 hover:cursor-pointer z-50"/>
                             </div>
                         )
@@ -87,7 +90,7 @@ const Nav = ()=>{
                             showPrompt?(
                                 <div className="w-[400px] h-[200px] bg-prompts absolute right-10 top-[60px] rounded-md z-50">
                                     <div className="mr-[5px] mt-[5px] flex justify-end" onClick={()=> setShowPrompt(()=> !showPrompt)}>
-                                        <img src="../src/assets/close.png" alt="" className="w-[30px] hover:cursor-pointer"/>
+                                        <img src={closeImg} alt="" className="w-[30px] hover:cursor-pointer"/>
                                     </div>
                                     <div className="text-center text-gray-200 text-[20px]">
                                         <p>Hi,</p>
@@ -107,7 +110,7 @@ const Nav = ()=>{
                             MobileMenu && windowSize.innerWidth < 768?(
                                 <div className="absolute w-[100vw] h-[100vh] bg-primary z-50 top-0">
                                     <div className="mr-[5px] mt-[5px] flex justify-end" onClick={()=> setMobileMenu(()=> !MobileMenu)}>
-                                        <img src="../src/assets/close.png" alt="" className="w-[30px] hover:cursor-pointer"/>
+                                        <img src={closeImg} alt="" className="w-[30px] hover:cursor-pointer"/>
                                     </div>
                                     <div className="text-gray-200 text-center text-[20px] mt-16">
                                         <p>Hi,</p>

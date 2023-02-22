@@ -10,6 +10,8 @@ const Projects = () =>{
     const closePopUp = ()=>{
         setPopUp(false);
     }
+    const plusImg = new URL('../assets/plus.png', import.meta.url).href;
+
     return(
         <>
             <div className="w-[300px] md:w-[850px] mx-auto mt-10">
@@ -19,7 +21,7 @@ const Projects = () =>{
                     <div onClick={()=> setPopUp(true)}
                     className="w-[200px] md:w-[250px] h-[150px] md:h-[200px] bg-gray-400 mx-auto md:mx-0 mt-10 md:ml-5 rounded-md grid place-content-center hover:cursor-pointer hover:bg-gray-500">
                         <div className="w-[50px]">
-                            <img src="../src/assets/plus.png" alt="" className="w-[100%]"></img>
+                            <img src={plusImg} alt="" className="w-[100%]"></img>
                         </div>
                     </div>
                     {
