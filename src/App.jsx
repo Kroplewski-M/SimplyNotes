@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Auth from './pages/Auth';
 import Projects from './pages/Projects';
 import Profile from './pages/Profile';
+import EditBlog from './pages/EditBlog';
 import { UserContext } from './userContext';
 import { useState, useEffect } from 'react';
 import { supabase} from './supabaseClient';
@@ -47,13 +48,15 @@ useEffect(()=>{
     <div className="App">
         <UserContext.Provider value={{user,setUser}}>
             <Nav />
-              <Routes>
+              {/* <Routes>
                   <Route path='/' element={<Home />}/>
                   <Route path='/auth' element={<Auth />}/>
                   <Route path='/projects' element={<Projects />}/>
                   <Route path='/profile' element={<Profile />}/>
-              </Routes>
+              </Routes> */}
+              <EditBlog />
         </UserContext.Provider>
+
     </div>
   )
 }
