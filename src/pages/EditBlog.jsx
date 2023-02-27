@@ -6,9 +6,10 @@ const EditBlog = ()=>{
         <>
             <section className="w-[100vw]">
                 <h1 className="text-[#222222] font-bold text-[20px] mt-5 text-center">Project 1</h1>
-                <div className="flex w-[250px] mx-auto mt-10">
+                <div className="flex w-[350px] mx-auto mt-10">
                     <button className="w-[100px] h-[30px] bg-primary rounded-md font-semibold mr-5">Edit</button>
-                    <button className="w-[100px] h-[30px] bg-primary rounded-md font-semibold">View</button>
+                    <button className="w-[100px] h-[30px] bg-primary rounded-md font-semibold mr-5">View</button>
+                    <button className="w-[100px] h-[30px] bg-primary rounded-md font-semibold">Save</button>
                 </div>
                 <div className="md:flex md:place-content-center max-w-[1200px] md:mx-auto">
                     <div className="w-[300px] md:w-[200px] rounded-md bg-gray-300 mt-5 mx-auto pl-[5px] font-semibold flex flex-wrap p-[10px] md:mr-10 md:relative md:h-[350px]">

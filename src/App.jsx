@@ -48,13 +48,15 @@ useEffect(()=>{
     <div className="App">
         <UserContext.Provider value={{user,setUser}}>
             <Nav />
-              {/* <Routes>
+              <Routes>
                   <Route path='/' element={<Home />}/>
                   <Route path='/auth' element={<Auth />}/>
                   <Route path='/projects' element={<Projects />}/>
                   <Route path='/profile' element={<Profile />}/>
-              </Routes> */}
-              <EditBlog />
+                  <Route path='/EditBlog' element={<EditBlog />}/>
+                  
+              </Routes>
+              {/* <EditBlog /> */}
         </UserContext.Provider>
 
     </div>

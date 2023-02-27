@@ -1,9 +1,12 @@
 import NoteCard from "../components/NoteCard";
 import AddNotePopUp from "../components/AddNotePopUp";
-import { useState,} from "react";
+import { useState} from "react";
+import { useNavigate  } from 'react-router-dom';
 
 
 const Projects = () =>{
+    const navigate = useNavigate();
+
     const cards = [1,2,3,4,5,6,7,8,9];
     const [popUp,setPopUp] = useState(false);
 
@@ -29,7 +32,7 @@ const Projects = () =>{
                             <>
                                 {
                                     cards.map((card)=>(
-                                        <div key={card}>
+                                        <div key={card} onClick={()=> navigate('/EditBlog')}>
                                             <NoteCard />
                                         </div>
                                     ))
