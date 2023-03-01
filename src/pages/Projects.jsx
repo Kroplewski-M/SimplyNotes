@@ -32,7 +32,7 @@ const Projects = () =>{
                             <>
                                 {
                                     cards.map((card)=>(
-                                        <div key={card} onClick={()=> navigate('/EditBlog')}>
+                                        <div key={card} onClick={()=> navigate('/EditNotes')}>
                                             <NoteCard />
                                         </div>
                                     ))

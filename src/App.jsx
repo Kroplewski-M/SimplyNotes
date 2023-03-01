@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Auth from './pages/Auth';
 import Projects from './pages/Projects';
 import Profile from './pages/Profile';
-import EditBlog from './pages/EditBlog';
+import EditNotes from './pages/EditNotes';
 import { UserContext } from './userContext';
 import { useState, useEffect } from 'react';
 import { supabase} from './supabaseClient';
@@ -53,7 +53,7 @@ useEffect(()=>{
                   <Route path='/auth' element={<Auth />}/>
                   <Route path='/projects' element={<Projects />}/>
                   <Route path='/profile' element={<Profile />}/>
-                  <Route path='/EditBlog' element={<EditBlog />}/>
+                  <Route path='/EditNotes' element={<EditNotes />}/>
                   
               </Routes>
               {/* <EditBlog /> */}
