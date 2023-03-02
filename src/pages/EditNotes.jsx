@@ -5,7 +5,8 @@ const EditNotes = ()=>{
     const [isEditing, setIsEditing] = useState(true);
     const [editBg,setEditBg] = useState('bg-gray-300');
     const [viewBg,setViewBg]= useState('bg-primary');
-    const html = marked.parse('# Marked in Node.js\n\nRendered by **marked** *italic*. - hello');
+    const [notes,setNotes] = useState('');
+
     useEffect(()=>{
         if(isEditing){
             setEditBg('bg-gray-300');
@@ -19,7 +20,7 @@ const EditNotes = ()=>{
     return(
         <>
             <section className="w-[100vw]">
-                <h1 className="text-[#222222] font-bold text-[20px] mt-5 text-center">Project 1</h1>
+                <h1 className="text-[#222222] font-bold text-[25px] mt-5 text-center">Project 1</h1>
                 <div className="flex md:w-[450px] w-[200px] mx-auto mt-10 md:space-x-5">
                     <button className={`w-[100px] h-[30px] rounded-md font-semibold mr-5 ${editBg}`}
                         onClick={()=>setIsEditing(true)}>Edit</button>
@@ -44,7 +45,8 @@ const EditNotes = ()=>{
                             </div>  
                     <div>
                         <div className="w-[95vw] md:w-[60vw] max-w-[1000px] mx-auto mt-10 ">
-                            <textarea name="notes" id="notes" autoFocus className="w-[100%] bg-gray-200 pl-[5px] h-[500px]"></textarea>
+                            <textarea name="notes" id="notes" autoFocus className="w-[100%] bg-gray-200 pl-5 pt-5 h-[500px]" value={notes}
+                            onChange={(event)=> setNotes(event.target.value)}></textarea>
                         </div>
 
                     </div>
@@ -54,7 +56,7 @@ const EditNotes = ()=>{
                     ):(
                         <>
                             <div className="w-[100vw] md:max-w-[800px] md:mx-auto mt-16 h-[500px]" id='view'>
-                                <div dangerouslySetInnerHTML={{__html: `${html}`}}></div>
+                                <div dangerouslySetInnerHTML={{__html: `${marked.parse(notes)}`}}></div>
                             </div>
                         </>
                     )
