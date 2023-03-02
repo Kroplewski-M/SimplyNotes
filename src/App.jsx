@@ -6,6 +6,7 @@ import Projects from './pages/Projects';
 import Profile from './pages/Profile';
 import EditNotes from './pages/EditNotes';
 import { UserContext } from './userContext';
+import { NotesContext } from './notesContext';
 import { useState, useEffect } from 'react';
 import { supabase} from './supabaseClient';
 import { Route, Routes, useNavigate  } from 'react-router-dom';
@@ -13,6 +14,7 @@ import { Route, Routes, useNavigate  } from 'react-router-dom';
 function App() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [notes, setNotes] = useState([]);
 
   async function fetchUserInfo(ID){
     try{
@@ -47,16 +49,17 @@ useEffect(()=>{
   return (
     <div className="App">
         <UserContext.Provider value={{user,setUser}}>
+        <NotesContext.Provider value ={{notes,setNotes}}>
             <Nav />
               <Routes>
                   <Route path='/' element={<Home />}/>
                   <Route path='/auth' element={<Auth />}/>
-                  <Route path='/projects' element={<Projects />}/>
+                    <Route path='/projects' element={<Projects />}/>
+                    <Route path='/EditNotes' element={<EditNotes />}/>
                   <Route path='/profile' element={<Profile />}/>
-                  <Route path='/EditNotes' element={<EditNotes />}/>
                   
               </Routes>
-              {/* <EditBlog /> */}
+        </NotesContext.Provider>
         </UserContext.Provider>
 
     </div>

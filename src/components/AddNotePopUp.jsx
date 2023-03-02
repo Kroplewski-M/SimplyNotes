@@ -1,14 +1,31 @@
 import { useState, useContext } from "react";
-
+import { supabase } from "../supabaseClient";
+import { UserContext } from "../userContext";
+import { NotesContext } from '../notesContext';
 
 const AddNotePopUp = ({closePopUp}) =>{
+    const {user,setUser} = useContext(UserContext);
+    const {notes,setNotes} = useContext(NotesContext);
+
     const [selectedColor, setSelectedColor] = useState(0);
     const [title,setTitle] = useState('');
     
-    function createNote(event){
+    async function createNote(event){
         event.preventDefault();
-        console.log(title)
-        console.log(selectedColor);
+        try{
+            const { data,error } = await supabase
+            .from('Notes')
+            .insert({  userID: user.id, NoteTitle: title, CardColor: selectedColor, Notes: ''});
+            if(error) throw error;
+            else{
+                closePopUp();
+                const newNote = {  userID: user.id, NoteTitle: title, CardColor: selectedColor, Notes: ''};
+                console.log(newNote);
+                setNotes(current => [...current,newNote ])
+            }
+        }catch(error){
+            console.log(error);
+        }
     }
     return(
         <> 

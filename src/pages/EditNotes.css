@@ -1,36 +1,36 @@
-p{
+.markdown p{
     all: revert;
 }
-h1{
+.markdown h1{
+    all: revert;
+}
+.markdown h2{
     all:revert;
 }
-h2{
+.markdown h3{
     all:revert;
 }
-h3{
+.markdown h4{
     all:revert;
 }
-h4{
+.markdown h5{
     all:revert;
 }
-h5{
+.markdown h6{
     all:revert;
 }
-h6{
+.markdown ul{
     all:revert;
 }
-ul{
+.markdown li{
     all:revert;
 }
-li{
+.markdown ol{
     all:revert;
 }
-ol{
+.markdown a{
     all:revert;
 }
-a{
-    all:revert;
-}
-code{
+.markdown code{
     color: rgb(163, 201, 235);
 }

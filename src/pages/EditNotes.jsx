@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { marked } from 'marked';
 import './EditNotes.css'
+
 const EditNotes = ()=>{
     const [isEditing, setIsEditing] = useState(true);
     const [editBg,setEditBg] = useState('bg-gray-300');
@@ -55,7 +56,7 @@ const EditNotes = ()=>{
                         </>
                     ):(
                         <>
-                            <div className="w-[100vw] md:max-w-[800px] md:mx-auto mt-16 h-[500px]" id='view'>
+                            <div className="w-[100vw] md:max-w-[800px] md:mx-auto mt-16 h-[500px] markdown">
                                 <div dangerouslySetInnerHTML={{__html: `${marked.parse(notes)}`}}></div>
                             </div>
                         </>

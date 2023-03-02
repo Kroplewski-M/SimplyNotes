@@ -1,12 +1,16 @@
 import NoteCard from "../components/NoteCard";
 import AddNotePopUp from "../components/AddNotePopUp";
-import { useState} from "react";
+import { useState, useContext, useEffect} from "react";
 import { useNavigate  } from 'react-router-dom';
+import { UserContext } from "../userContext";
+import { NotesContext } from '../notesContext';
+import { supabase} from '../supabaseClient';
 
 
 const Projects = () =>{
     const navigate = useNavigate();
-
+    const {user,setUser} = useContext(UserContext);
+    const {notes,setNotes} = useContext(NotesContext);
     const cards = [1,2,3,4,5,6,7,8,9];
     const [popUp,setPopUp] = useState(false);
 
@@ -14,6 +18,26 @@ const Projects = () =>{
         setPopUp(false);
     }
     const plusImg = new URL('../assets/plus.png', import.meta.url).href;
+
+    
+    async function fetchNotes(){  
+        try{
+            const { data, error } = await supabase
+            .from('Notes')
+            .select().eq('userID',user.id);
+            if(error) throw error;
+            else{
+                setNotes(data);
+            }
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    useEffect(()=>{
+        if(user)
+            fetchNotes();
+    },[]);
 
     return(
         <>
@@ -28,12 +52,12 @@ const Projects = () =>{
                         </div>
                     </div>
                     {
-                        cards?.length > 0?(
+                        notes?.length > 0?(
                             <>
                                 {
-                                    cards.map((card)=>(
-                                        <div key={card} onClick={()=> navigate('/EditNotes')}>
-                                            <NoteCard />
+                                    notes.map((card)=>(
+                                        <div key={card.id} onClick={()=> navigate('/EditNotes')}>
+                                            <NoteCard title={card.NoteTitle} bgColor={card.CardColor} />
                                         </div>
                                     ))
                                 }
