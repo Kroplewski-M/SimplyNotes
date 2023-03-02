@@ -11,7 +11,6 @@ const Projects = () =>{
     const navigate = useNavigate();
     const {user,setUser} = useContext(UserContext);
     const {notes,setNotes} = useContext(NotesContext);
-    const cards = [1,2,3,4,5,6,7,8,9];
     const [popUp,setPopUp] = useState(false);
 
     const closePopUp = ()=>{
@@ -35,8 +34,11 @@ const Projects = () =>{
     }
 
     useEffect(()=>{
-        if(user)
-            fetchNotes();
+        if(user){
+            if(notes.length == 0){
+                fetchNotes();
+            }
+        }
     },[]);
 
     return(
