@@ -63,7 +63,7 @@ const Nav = ()=>{
     return(
         <>
         <nav className="w-[100vw] h-[60px] bg-primary text-secondary">
-           <p className="font-main text-[30px] text-gray-200 pt-[5px] w-[150px] mx-auto hover:cursor-pointer" onClick={()=> navigate('/')}>SimplyNotes</p>
+           <p className="font-main text-[30px] text-gray-200 m-0 pt-[5px] w-[150px] mx-auto hover:cursor-pointer" onClick={()=> navigate('/')}>SimplyNotes</p>
            {
             user != null ?(
                 <>
@@ -93,8 +93,8 @@ const Nav = ()=>{
                                         <img src={closeImg} alt="" className="w-[30px] hover:cursor-pointer"/>
                                     </div>
                                     <div className="text-center text-gray-200 text-[20px]">
-                                        <p>Hi,</p>
-                                        <p className="font-bold">{user.fullName}</p>
+                                        <p className='m-0 p-0'>Hi,</p>
+                                        <p className="font-bold m-0 p-0">{user.fullName}</p>
                                     </div>
                                     <div className="w-[300px] h-[35px] mx-auto mt-10" onClick={()=> goToProfile()}>
                                         <button className="w-[100%] h-[100%] rounded-md bg-gray-200 font-bold">Account Settings</button>

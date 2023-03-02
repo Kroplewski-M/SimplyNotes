@@ -104,7 +104,7 @@ const RegisterForm = ()=>{
             }
             <div>
                 <p className="text-[20px] font-semibold text-center mb-[15px]">Choose an avatar:</p>
-                <ul className="flex space-x-5 place-content-center">
+                <ul className="flex space-x-5 place-content-center list-none">
                     <li onClick={()=> setAvatarNum(1)}>
                         <img src={defaultAvatar1} alt="" 
                         className="w-[60px] h-[60px] hover:cursor-pointer hover:border-solid hover:border-2 hover:border-gray-300 rounded-full" />

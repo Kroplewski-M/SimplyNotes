@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-
-
+import { marked } from 'marked';
+import './EditNotes.css'
 const EditNotes = ()=>{
     const [isEditing, setIsEditing] = useState(true);
     const [editBg,setEditBg] = useState('bg-gray-300');
     const [viewBg,setViewBg]= useState('bg-primary');
-
+    const html = marked.parse('# Marked in Node.js\n\nRendered by **marked** *italic*. - hello');
     useEffect(()=>{
         if(isEditing){
             setEditBg('bg-gray-300');
@@ -15,6 +15,7 @@ const EditNotes = ()=>{
             setViewBg('bg-gray-300');
         }
     },[isEditing])
+
     return(
         <>
             <section className="w-[100vw]">
@@ -31,14 +32,14 @@ const EditNotes = ()=>{
                         <>
                             <div className="md:flex md:place-content-center max-w-[1250px] md:mx-auto">
                                 <div className="w-[300px] md:w-[200px] rounded-md bg-gray-300 mt-5 mx-auto pl-[5px] font-semibold flex flex-wrap p-[10px] md:mr-10 md:relative md:h-[350px]">
-                                <p className="mr-[5px] h-[30px]">Key:</p>
+                                <p className="mr-[5px] h-[30px] p-0 m-0">Key:</p>
                                 <div className="flex flex-wrap w-[80%] md:w-[95%] md:mx-auto space-y-2 md:space-y-0">
-                                    <p className="mr-[5px] h-[35px]  bg-gray-400 p-[4px] rounded-md mt-[8px] md:mt-0"># : h1</p>
-                                    <p className="mr-[5px] h-[35px] bg-gray-400 p-[4px] rounded-md">*example* : italic</p>
-                                    <p className="mr-[5px] h-[35px] bg-gray-400 p-[4px] rounded-md">**example** : bold</p>
-                                    <p className="mr-[5px] h-[35px] bg-gray-400 p-[4px] rounded-md">1. : ordered list</p>
-                                    <p className="mr-[5px] h-[35px] bg-gray-400 p-[4px] rounded-md">- : unordered list</p>
-                                    <p className="mr-[5px] h-[55px] bg-gray-400 p-[4px] rounded-md ">- example : unordered list</p>
+                                    <p className="mr-[5px] h-[35px] m-0 pb-0  bg-gray-400 p-[4px] rounded-md mt-[8px] md:mt-0"># : h1</p>
+                                    <p className="mr-[5px] h-[35px] m-0 pb-0  bg-gray-400 p-[4px] rounded-md">*example* : italic</p>
+                                    <p className="mr-[5px] h-[35px] m-0 pb-0  bg-gray-400 p-[4px] rounded-md">**example** : bold</p>
+                                    <p className="mr-[5px] h-[35px] m-0 pb-0  bg-gray-400 p-[4px] rounded-md">1. : ordered list</p>
+                                    <p className="mr-[5px] h-[35px] m-0 pb-0  bg-gray-400 p-[4px] rounded-md">- : unordered list</p>
+                                    <p className="mr-[5px] h-[55px] m-0 pb-0  bg-gray-400 p-[4px] rounded-md ">- example : unordered list</p>
                                 </div>
                             </div>  
                     <div>
@@ -52,8 +53,8 @@ const EditNotes = ()=>{
                         </>
                     ):(
                         <>
-                            <div className="w-[100vw] md:max-w-[800px] md:mx-auto border-solid border-2 border-black mt-16 h-[500px]">
-
+                            <div className="w-[100vw] md:max-w-[800px] md:mx-auto mt-16 h-[500px]" id='view'>
+                                <div dangerouslySetInnerHTML={{__html: `${html}`}}></div>
                             </div>
                         </>
                     )
