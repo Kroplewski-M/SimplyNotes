@@ -55,7 +55,7 @@ useEffect(()=>{
                   <Route path='/' element={<Home />}/>
                   <Route path='/auth' element={<Auth />}/>
                     <Route path='/projects' element={<Projects />}/>
-                    <Route path='/EditNotes' element={<EditNotes />}/>
+                    <Route path='/EditNotes/:id' element={<EditNotes />}/>
                   <Route path='/profile' element={<Profile />}/>
                   
               </Routes>

@@ -6,7 +6,6 @@ import { UserContext } from "../userContext";
 import { NotesContext } from '../notesContext';
 import { supabase} from '../supabaseClient';
 
-
 const Projects = () =>{
     const navigate = useNavigate();
     const {user,setUser} = useContext(UserContext);
@@ -58,7 +57,7 @@ const Projects = () =>{
                             <>
                                 {
                                     notes.map((card)=>(
-                                        <div key={card.id} onClick={()=> navigate('/EditNotes')}>
+                                        <div key={card.id} onClick={()=> navigate(`/EditNotes/${card.id}`)}>
                                             <NoteCard title={card.NoteTitle} bgColor={card.CardColor} />
                                         </div>
                                     ))
