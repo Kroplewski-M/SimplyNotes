@@ -4,6 +4,7 @@ import './EditNotes.css'
 import { useParams } from "react-router-dom";
 import { NotesContext } from '../notesContext';
 import { supabase} from '../supabaseClient';
+import DeleteNotePrompt from "../components/deleteNotePrompt";
 
 const EditNotes = ()=>{
 
@@ -15,6 +16,7 @@ const EditNotes = ()=>{
     const [viewBg,setViewBg]= useState('bg-primary');
     const [myNotes,setMyNotes] = useState('');
     const [noteData, setNoteData] = useState([]);
+    const [deletePromt, setDeletePromt] = useState(false);
 
     useEffect(()=>{
         if(isEditing){
@@ -60,7 +62,12 @@ const EditNotes = ()=>{
         return(
             <>
                 <section className="w-[100vw]">
-                    <h1 className="text-[#222222] font-bold text-[25px] mt-5 text-center">{noteData[0].NoteTitle}</h1>
+                    <div className="flex flex-wrap w-[100%] justify-center mt-5 flex-col md:flex-row place-content-center">
+                        <h1 className="text-[#222222] font-bold text-[25px]">{noteData[0].NoteTitle}</h1>
+                         <button onClick={d}
+                            className="w-[100px] h-[30px] bg-red-600 rounded-md font-semibold ml-5 mt-5 md:mt-[5px] hover:bg-red-700"
+                            >Delete Note</button>
+                    </div>
                     <div className="flex md:w-[450px] w-[200px] mx-auto mt-10 md:space-x-5">
                         <button className={`w-[100px] h-[30px] rounded-md font-semibold mr-5 ${editBg}`}
                             onClick={()=>setIsEditing(true)}>Edit</button>
