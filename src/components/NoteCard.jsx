@@ -3,16 +3,16 @@
 const NoteCard = (props)=>{
     function getBgColor(color){
         if(color == 0){
-            return 'bg-gray-400 hover:bg-gray-300'
+            return 'bg-gray-400 hover:bg-gray-300 text-[#222222]'
         }
         if(color == 1){
-            return 'bg-green-600 hover:bg-green-400'
+            return 'bg-green-600 hover:bg-green-400 text-[#222222]'
         }
         if(color == 2){
-            return 'bg-blue-600 hover:bg-blue-400'
+            return 'bg-blue-600 hover:bg-blue-400 text-[#222222]'
         }
         if(color == 3){
-            return 'bg-black hover:bg-gray-400'
+            return 'bg-black hover:bg-gray-400 text-gray-200 hover:text-[#222222]'
         }
     }
     return(

@@ -3,6 +3,7 @@ import { marked } from 'marked';
 import './EditNotes.css'
 import { useParams } from "react-router-dom";
 import { NotesContext } from '../notesContext';
+import { supabase} from '../supabaseClient';
 
 const EditNotes = ()=>{
 
@@ -32,7 +33,22 @@ const EditNotes = ()=>{
         }
     },[])
  
-   
+   async function updateNotes(){
+        console.log(myNotes);
+        // setNotes(notes.map(item => item.id == id).Notes = myNotes);
+        // TO DO- SAVE NOTE TO LOCAL VARIABLE
+        console.log(notes);
+        try{
+            const { error } = await supabase.from('Notes').update({Notes: myNotes }).eq('id', id)
+            if(error) throw error;
+            else{
+                console.log('notes updated!')
+            }
+        }catch(error){
+            console.log(error);
+        }
+   }
+
     if(noteData[0] == undefined){
         return (
             <>
@@ -50,7 +66,8 @@ const EditNotes = ()=>{
                             onClick={()=>setIsEditing(true)}>Edit</button>
                         <button className={`w-[100px] h-[30px] rounded-md font-semibold mr-5 ${viewBg}`}
                             onClick={()=> setIsEditing(false)}>View</button>
-                        <button className="w-[100px] h-[30px] bg-primary rounded-md font-semibold">Save</button>
+                        <button onClick={updateNotes}
+                        className="w-[100px] h-[30px] bg-primary rounded-md font-semibold">Save</button>
                     </div>
                     {
                         isEditing?(
