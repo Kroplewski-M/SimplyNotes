@@ -12,19 +12,23 @@ const AddNotePopUp = ({closePopUp}) =>{
     
     async function createNote(event){
         event.preventDefault();
-        try{
-            const { data,error } = await supabase
-            .from('Notes')
-            .insert({  userID: user.id, NoteTitle: title, CardColor: selectedColor, Notes: ''});
-            if(error) throw error;
-            else{
-                closePopUp();
-                const newNote = {  userID: user.id, NoteTitle: title, CardColor: selectedColor, Notes: ''};
-                console.log(newNote);
-                setNotes(current => [...current,newNote ])
+        if(title != ''){
+            try{
+                const { data,error } = await supabase
+                .from('Notes')
+                .insert({  userID: user.id, NoteTitle: title, CardColor: selectedColor, Notes: ''});
+                if(error) throw error;
+                else{
+                    closePopUp();
+                    const newNote = {  userID: user.id, NoteTitle: title, CardColor: selectedColor, Notes: ''};
+                    console.log(newNote);
+                    setNotes(current => [...current,newNote ])
+                }
+            }catch(error){
+                console.log(error);
             }
-        }catch(error){
-            console.log(error);
+        }else{
+            console.log('no title');
         }
     }
     return(
