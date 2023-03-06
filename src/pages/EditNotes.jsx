@@ -4,7 +4,7 @@ import './EditNotes.css'
 import { useParams } from "react-router-dom";
 import { NotesContext } from '../notesContext';
 import { supabase} from '../supabaseClient';
-import DeleteNotePrompt from "../components/deleteNotePrompt";
+import DeleteNotePrompt from "../components/DeleteNotePrompt";
 
 const EditNotes = ()=>{
 
@@ -29,7 +29,7 @@ const EditNotes = ()=>{
     },[isEditing])
 
     useEffect(()=>{
-        if(notes != undefined){
+        if(notes){
             setNoteData(()=> notes.filter(item => item.id == id));
             setMyNotes(()=> notes.filter(item => item.id == id)[0].Notes)
         }
@@ -50,21 +50,24 @@ const EditNotes = ()=>{
             console.log(error);
         }
    }
+   
+   const DeletePromptCancel = ()=>{
+        setDeletePromt(false);
+   }
 
-    if(noteData[0] == undefined){
-        return (
-            <>
-                <p>Loading</p>
-            </>
-        )
+   if(noteData[0] == undefined){
+    return (
+        <>
+            <p>Loading</p>
+        </>
+    )
     }else{
-
         return(
             <>
                 <section className="w-[100vw]">
                     <div className="flex flex-wrap w-[100%] justify-center mt-5 flex-col md:flex-row place-content-center">
                         <h1 className="text-[#222222] font-bold text-[25px]">{noteData[0].NoteTitle}</h1>
-                         <button onClick={d}
+                         <button onClick={()=> setDeletePromt(true)}
                             className="w-[100px] h-[30px] bg-red-600 rounded-md font-semibold ml-5 mt-5 md:mt-[5px] hover:bg-red-700"
                             >Delete Note</button>
                     </div>
@@ -109,11 +112,19 @@ const EditNotes = ()=>{
                             </>
                         )
                     }
-                    
+                {
+                    deletePromt?(
+                        <div className="w-[100vw] h-[100vh] absolute top-0">
+                            <DeleteNotePrompt id={id} title={noteData[0].NoteTitle} cancel={DeletePromptCancel}/>
+                        </div>
+                    ):(
+                        <></>
+                    )
+                }
                 </section>
             </>
         )
-    }
-}
+    }}
+
 
 export default EditNotes;

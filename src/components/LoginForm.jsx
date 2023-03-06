@@ -33,10 +33,9 @@ const LoginForm = ()=>{
                   fetchUserInfo(data.user);
               }
         }catch(error){
-            console.log('error');
-            console.log(error);
             setPromtBg('bg-red-700');
             setPromtState('Account not Found');
+            setDisableBtn(false);
         }
     }
     async function fetchUserInfo(user){
