@@ -35,22 +35,31 @@ const EditNotes = ()=>{
         }
     },[])
  
-   async function updateNotes(){
-        console.log(myNotes);
-        // setNotes(notes.map(item => item.id == id).Notes = myNotes);
-        // TO DO- SAVE NOTE TO LOCAL VARIABLE
-        console.log(notes);
-        try{
-            const { error } = await supabase.from('Notes').update({Notes: myNotes }).eq('id', id)
-            if(error) throw error;
-            else{
-                console.log('notes updated!')
+
+   function updateLocalNotes(){
+        const newNotes = notes.map((note)=>{
+            if(note.id === id){
+                return {id: id, NoteTitle: noteData[0].NoteTitle, Notes:myNotes ,userID:noteData[0].userID, CardColor:noteData[0].CardColor }
+            }else{
+                return note;
             }
-        }catch(error){
-            console.log(error);
-        }
+        })
+        setNotes(newNotes);
    }
-   
+   async function updateNotes(){
+    console.log(notes);
+    try{
+        const { error } = await supabase.from('Notes').update({Notes: myNotes }).eq('id', id)
+        if(error) throw error;
+        else{
+            console.log('notes updated!')
+        }
+    }catch(error){
+        console.log(error);
+    }finally{
+       updateLocalNotes();
+    }
+}
    const DeletePromptCancel = ()=>{
         setDeletePromt(false);
    }
