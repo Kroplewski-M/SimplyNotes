@@ -5,7 +5,6 @@ import { useNavigate  } from 'react-router-dom';
 
 const Nav = ()=>{
     const navigate = useNavigate();
-
     const [windowSize, setWindowSize] = useState(getWindowSize());
     const [showPrompt, setShowPrompt] = useState(false);
     const [MobileMenu, setMobileMenu] = useState(false);

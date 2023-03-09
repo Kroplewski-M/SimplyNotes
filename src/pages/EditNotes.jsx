@@ -5,8 +5,10 @@ import { useParams } from "react-router-dom";
 import { NotesContext } from '../notesContext';
 import { supabase} from '../supabaseClient';
 import DeleteNotePrompt from "../components/DeleteNotePrompt";
+import { useNavigate  } from 'react-router-dom';
 
 const EditNotes = ()=>{
+    const navigate = useNavigate();
 
     const {id} = useParams();
     const {notes,setNotes} = useContext(NotesContext);
@@ -30,11 +32,14 @@ const EditNotes = ()=>{
     },[isEditing])
 
     useEffect(()=>{
-        if(notes){
-            setNoteData(()=> notes.filter(item => item.id == id));
-            setMyNotes(()=> notes.filter(item => item.id == id)[0].Notes)
+        if(notes === undefined){
+                navigate('/projects');
         }
-    },[])
+        else{
+            setNoteData(notes.filter(item => item.id == id));
+            setMyNotes(notes.filter(item => item.id == id)[0].Notes);
+        }
+    },[notes])
  
 
    function updateLocalNotes(){

@@ -9,12 +9,13 @@ import { UserContext } from './userContext';
 import { NotesContext } from './notesContext';
 import { useState, useEffect } from 'react';
 import { supabase} from './supabaseClient';
-import { Route, Routes, useNavigate  } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation  } from 'react-router-dom';
 
 function App() {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [notes, setNotes] = useState([]);
+  const location = useLocation();
 
   async function fetchUserInfo(ID){
     try{
@@ -25,8 +26,10 @@ function App() {
         else{
             console.log('user found:');
             setUser(data[0]);
-            console.log('Redirecting...');
-            navigate('/projects');
+            if(location.pathname == '/'){
+              console.log('Redirecting...');
+              navigate('/projects');
+            }
         }
     }catch(error){
         console.log(error);
