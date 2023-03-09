@@ -17,6 +17,7 @@ const EditNotes = ()=>{
     const [myNotes,setMyNotes] = useState('');
     const [noteData, setNoteData] = useState([]);
     const [deletePromt, setDeletePromt] = useState(false);
+    const [loading,setLoading] = useState(false);
 
     useEffect(()=>{
         if(isEditing){
@@ -45,9 +46,10 @@ const EditNotes = ()=>{
             }
         })
         setNotes(newNotes);
+        setLoading(false);
    }
    async function updateNotes(){
-    console.log(notes);
+    setLoading(true);
     try{
         const { error } = await supabase.from('Notes').update({Notes: myNotes }).eq('id', id)
         if(error) throw error;
@@ -85,7 +87,7 @@ const EditNotes = ()=>{
                             onClick={()=>setIsEditing(true)}>Edit</button>
                         <button className={`w-[100px] h-[30px] rounded-md font-semibold mr-5 ${viewBg}`}
                             onClick={()=> setIsEditing(false)}>View</button>
-                        <button onClick={updateNotes}
+                        <button onClick={updateNotes} disabled={loading}
                         className="w-[100px] h-[30px] bg-primary rounded-md font-semibold">Save</button>
                     </div>
                     {
