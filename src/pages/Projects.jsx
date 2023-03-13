@@ -58,7 +58,7 @@ const Projects = () =>{
                                 {
                                     notes.map((card)=>(
                                         <div key={card.id} onClick={()=> navigate(`/EditNotes/${card.id}`)}>
-                                            <NoteCard key={card.id} title={card.NoteTitle} bgColor={card.CardColor} />
+                                            <NoteCard title={card.NoteTitle} bgColor={card.CardColor} />
                                         </div>
                                     ))
                                 }

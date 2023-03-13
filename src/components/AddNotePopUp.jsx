@@ -16,16 +16,17 @@ const AddNotePopUp = ({closePopUp}) =>{
             try{
                 const { data,error } = await supabase
                 .from('Notes')
-                .insert({  userID: user.id, NoteTitle: title, CardColor: selectedColor, Notes: ''});
+                .insert({  userID: user.id, NoteTitle: title, CardColor: selectedColor, Notes: ''}).select();
                 if(error) throw error;
                 else{
                     closePopUp();
-                    const newNote = {  userID: user.id, NoteTitle: title, CardColor: selectedColor, Notes: ''};
-                    console.log(newNote);
-                    setNotes(current => [...current,newNote ])
+                    const newNote = { id:data[0].id, userID: user.id, NoteTitle: title, CardColor: selectedColor, Notes: ''};
+                    notes.push(newNote);
                 }
             }catch(error){
                 console.log(error);
+            }finally{
+                console.log(notes);
             }
         }else{
             console.log('no title');
