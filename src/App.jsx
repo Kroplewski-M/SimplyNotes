@@ -48,7 +48,6 @@ useEffect(()=>{
   }
   },[])
 
-
   return (
     <div className="App">
         <UserContext.Provider value={{user,setUser}}>

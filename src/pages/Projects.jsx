@@ -31,14 +31,14 @@ const Projects = () =>{
             console.log(error);
         }
     }
-
+    
     useEffect(()=>{
         if(user){
             if(notes.length == 0){
                 fetchNotes();
             }
         }
-    },[]);
+    },[user]);
 
     return(
         <>

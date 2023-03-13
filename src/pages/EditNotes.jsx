@@ -32,13 +32,13 @@ const EditNotes = ()=>{
     },[isEditing])
 
     useEffect(()=>{
-        if(notes === undefined){
+            if(notes.filter(item => item.id == id)[0] == undefined){
                 navigate('/projects');
-        }
-        else{
-            setNoteData(notes.filter(item => item.id == id));
-            setMyNotes(notes.filter(item => item.id == id)[0].Notes);
-        }
+            }else{
+                setNoteData(notes.filter(item => item.id == id));
+                setMyNotes(notes.filter(item => item.id == id)[0].Notes);
+
+            }
     },[notes])
  
 
