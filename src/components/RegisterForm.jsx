@@ -2,10 +2,11 @@ import { useState,useContext } from "react";
 import { supabase} from '../supabaseClient';
 import { UserContext } from "../userContext";
 import { useNavigate  } from 'react-router-dom';
-
+import { NotesContext } from '../notesContext';
 
 const RegisterForm = ()=>{
     const {user,setUser} = useContext(UserContext);
+    const {notes,setNotes} = useContext(NotesContext);
     const navigate = useNavigate();
 
     const [avatarNum, setAvatarNum] = useState(1);
@@ -53,6 +54,7 @@ const RegisterForm = ()=>{
                 setPromtState('Account Created...Redirecting!');
                 setPromtBg('bg-green-600');
                 setUser(data[0]);
+                setNotes(null);
                 setTimeout(function() {
                     navigate('/projects');
                 }, 1000);
