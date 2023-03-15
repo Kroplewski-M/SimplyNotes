@@ -82,9 +82,11 @@ const EditNotes = ()=>{
             <>
                 <section className="w-[100vw]">
                     <div className="flex flex-wrap w-[100%] justify-center mt-5 flex-col md:flex-row place-content-center">
-                        <h1 className="text-[#222222] font-bold text-[25px]">{noteData[0].NoteTitle}</h1>
+                    <button onClick={()=> navigate('/projects')}
+                    className="w-[100px] h-[30px] bg-blue-600 rounded-md font-semibold mt-5 md:mt-[5px] hover:bg-blue-700">Back</button>
+                        <h1 className="text-[#222222] font-bold text-[25px] mx-5">{noteData[0].NoteTitle}</h1>
                          <button onClick={()=> setDeletePromt(true)}
-                            className="w-[100px] h-[30px] bg-red-600 rounded-md font-semibold ml-5 mt-5 md:mt-[5px] hover:bg-red-700"
+                            className="w-[100px] h-[30px] bg-red-600 rounded-md font-semibold mt-5 md:mt-[5px] hover:bg-red-700"
                             >Delete Note</button>
                     </div>
                     <div className="flex md:w-[450px] w-[200px] mx-auto mt-10 md:space-x-5">

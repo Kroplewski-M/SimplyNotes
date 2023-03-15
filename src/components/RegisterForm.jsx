@@ -54,7 +54,7 @@ const RegisterForm = ()=>{
                 setPromtState('Account Created...Redirecting!');
                 setPromtBg('bg-green-600');
                 setUser(data[0]);
-                setNotes(null);
+                setNotes([]);
                 setTimeout(function() {
                     navigate('/projects');
                 }, 1000);
