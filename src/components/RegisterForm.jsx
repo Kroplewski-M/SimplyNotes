@@ -47,12 +47,12 @@ const RegisterForm = ()=>{
         try{
             const { data,error } = await supabase
             .from('profiles')
-            .insert({ id: ID, fullName: FullName, email:Email, usage:Usage, AvatarNum: avatarNum});
+            .insert({ id: ID, fullName: FullName, email:Email, usage:Usage, AvatarNum: avatarNum}).select();
             if(error) throw error;
             else{
                 setPromtState('Account Created...Redirecting!');
                 setPromtBg('bg-green-600');
-                setUser(data);
+                setUser(data[0]);
                 setTimeout(function() {
                     navigate('/projects');
                 }, 1000);
