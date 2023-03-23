@@ -1,0 +1,5 @@
+# SimplyNotes
+
+### Simple note taking app using React and Supabase
+
+*** PROJECT IS CURRENTLY PAUSED IN SUPABSE AS I ONLY HAVE THE FREE VERSION AND CURRENTLY USING IT FOR MY OTHER PROJECTS ***
